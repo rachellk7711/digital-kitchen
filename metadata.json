@@ -1,0 +1,6 @@
+{
+  "name": "퍼스널 헬스 셰프",
+  "description": "'퍼스널 헬스 셰프'가 제안하는 노밀가루, 저당 건강 식단 관리 서비스입니다. 성장기 아이들을 위한 맞춤형 레시피와 팬트리 관리를 제공합니다.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

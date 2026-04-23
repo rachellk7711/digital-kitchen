@@ -1,0 +1,55 @@
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+// 환경 변수 가져오기 (Vite와 Node/Cloud Run 환경 대응)
+const getEnvVar = (name: string): string | undefined => {
+  const env = (import.meta as any).env;
+  if (env && env[name]) return env[name];
+  if (typeof process !== 'undefined' && process.env && process.env[name]) return process.env[name];
+  return undefined;
+};
+
+let supabaseInstance: SupabaseClient | null = null;
+
+const getSupabase = (): SupabaseClient => {
+  if (supabaseInstance) return supabaseInstance;
+
+  const supabaseUrl = getEnvVar('VITE_SUPABASE_URL');
+  const supabaseAnonKey = getEnvVar('VITE_SUPABASE_ANON_KEY');
+
+  console.log('Supabase Initializing with URL:', supabaseUrl ? 'Found' : 'Missing');
+
+  if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('your-project')) {
+    throw new Error('Supabase 설정이 완료되지 않았습니다. AI Studio의 "Settings > Secrets" 메뉴에서 VITE_SUPABASE_URL과 VITE_SUPABASE_ANON_KEY를 설정해 주세요.');
+  }
+
+  // URL 유효성 간단 체크 (공백 제거 등)
+  const cleanUrl = supabaseUrl.trim().replace(/\/$/, '');
+  const cleanKey = supabaseAnonKey.trim();
+
+  supabaseInstance = createClient(cleanUrl, cleanKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    }
+  });
+  
+  return supabaseInstance;
+};
+
+// 프록시를 사용하여 기존의 'supabase.from()' 스타일 코드를 그대로 유지하면서 지연 초기화 수행
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    try {
+      const client = getSupabase();
+      const value = (client as any)[prop];
+      if (typeof value === 'function') {
+        return value.bind(client);
+      }
+      return value;
+    } catch (e) {
+      // 초기화 실패 시 에러를 던져서 호출 부의 try-catch에서 잡히도록 함
+      console.error('Supabase initialization failed:', e);
+      throw e;
+    }
+  }
+});

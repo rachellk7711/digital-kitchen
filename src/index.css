@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #904800;
+  --color-primary-container: #f68a2f;
+  --color-on-primary: #fff0e8;
+  --color-secondary: #4d6227;
+  --color-secondary-container: #d2eca2;
+  --color-on-secondary-container: #43581f;
+  --color-surface: #f8f6f2;
+  --color-surface-container: #e9e8e4;
+  --color-surface-container-low: #f2f1ec;
+  --color-surface-container-high: #e4e2de;
+  --color-surface-container-highest: #deddd8;
+  --color-on-surface: #2e2f2d;
+  --color-on-surface-variant: #5b5c59;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
