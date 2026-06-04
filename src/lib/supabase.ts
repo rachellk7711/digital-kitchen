@@ -22,7 +22,7 @@ const getSupabase = (): SupabaseClient => {
   console.log('Supabase Initializing with URL:', supabaseUrl ? 'Found' : 'Missing');
 
   if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('your-project')) {
-    throw new Error('Supabase 설정이 완료되지 않았습니다. AI Studio의 "Settings > Secrets" 메뉴에서 VITE_SUPABASE_URL과 VITE_SUPABASE_ANON_KEY를 설정해 주세요.');
+    throw new Error(`Supabase 설정이 완료되지 않았습니다. (현재 감지된 URL: "${supabaseUrl || '없음'}", KEY: "${supabaseAnonKey ? '감지됨' : '없음'}") Vercel의 Environment Variables에 VITE_SUPABASE_URL과 VITE_SUPABASE_ANON_KEY가 올바르게 등록되어 있는지 확인해 주세요.`);
   }
 
   // URL 유효성 간단 체크 (공백 제거 등)
