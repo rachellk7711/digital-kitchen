@@ -20,7 +20,7 @@ export async function getRecipeRecommendations(
   [{ "title": "요리명", "description": "소개", "healthPoint": "건강포인트", "time": "시간", "difficulty": "난이도", "servings": ${servings}, "calories": 0, "ingredients": [{ "name": "이름", "amount": "양" }], "instructions": ["1단계", "2단계"], "tags": ["태그"], "chefTip": "꿀팁", "videoUrl": "검색링크" }]`;
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     
     const response = await fetch(url, {
       method: 'POST',
@@ -80,7 +80,7 @@ export async function refineRecipe(currentRecipe: any, userQuestion: string) {
   }`;
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     
     const response = await fetch(url, {
       method: 'POST',
