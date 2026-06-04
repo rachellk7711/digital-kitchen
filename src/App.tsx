@@ -41,12 +41,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <ChefHat className="text-primary-container" size={28} />
             <h1 className="text-xl font-bold text-on-surface font-headline tracking-tight">퍼스널 웰니스 셰프</h1>
           </div>
-          <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
-            <img
-              alt="Wellness Food Profile"
-              src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=120&h=120&q=80"
-              referrerPolicy="no-referrer"
-            />
+          <div className="h-10 w-10 rounded-full flex items-center justify-center border-2 border-primary-container shadow-sm bg-orange-50 text-orange-600">
+            <ChefHat size={20} />
           </div>
         </div>
       </header>
