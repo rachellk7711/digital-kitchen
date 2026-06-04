@@ -155,16 +155,8 @@ export default function ChefsStudy() {
       {/* Profile Header */}
       <section className="flex flex-col items-center text-center space-y-4">
         <div className="relative">
-          <div className="w-32 h-32 rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl">
-            <img
-              alt="User profile"
-              className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1556157382-97dee2dcb748?auto=format&fit=crop&w=300&q=80"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-xl shadow-lg">
-            <ChefHat size={20} />
+          <div className="w-32 h-32 rounded-[2.5rem] flex items-center justify-center border-4 border-white bg-orange-50 text-orange-600 shadow-xl">
+            <ChefHat size={48} />
           </div>
         </div>
         <div>
