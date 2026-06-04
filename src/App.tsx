@@ -43,8 +43,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
           <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
             <img
-              alt="User profile"
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80"
+              alt="Wellness Food Profile"
+              src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=120&h=120&q=80"
               referrerPolicy="no-referrer"
             />
           </div>
