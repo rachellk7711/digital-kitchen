@@ -1,10 +1,13 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-// 환경 변수 가져오기 (Vite와 Node/Cloud Run 환경 대응)
 const getEnvVar = (name: string): string | undefined => {
-  const env = (import.meta as any).env;
-  if (env && env[name]) return env[name];
-  if (typeof process !== 'undefined' && process.env && process.env[name]) return process.env[name];
+  // Vite requires static analysis for import.meta.env, so dynamic key access (env[name]) fails in production builds.
+  if (name === 'VITE_SUPABASE_URL') {
+    return import.meta.env.VITE_SUPABASE_URL || (typeof process !== 'undefined' ? process.env.VITE_SUPABASE_URL : undefined);
+  }
+  if (name === 'VITE_SUPABASE_ANON_KEY') {
+    return import.meta.env.VITE_SUPABASE_ANON_KEY || (typeof process !== 'undefined' ? process.env.VITE_SUPABASE_ANON_KEY : undefined);
+  }
   return undefined;
 };
 
